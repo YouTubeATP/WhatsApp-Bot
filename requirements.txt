@@ -1,0 +1,3 @@
+pyimgur==0.6.0
+selenium==3.12.0
+webwhatsapi @ git+https://github.com/YouTubeATP/WebWhatsapp-Wrapper.git
