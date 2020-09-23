@@ -66,6 +66,10 @@ while True:
                         contact.chat.send_message("Hello, this is Anson Salt Industries. How may I assist you?")
                     elif message.content.startswith("!discord"):
                         contact.chat.send_message("Join the Discord Server here!\nhttps://discord.io/ansonthepro")
+                    elif message.content.startswith("!channel"):
+                        contact.chat.send_message("See my YouTube Channel here:\nhttps://youtube.com/user/anson0803aw")
+                    elif "gay" in message.content:
+                        contact.chat.send_message("No u")
     ## Ignore these errors as they are harmless!
     except CannotSendRequest:
         continue
