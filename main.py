@@ -8,6 +8,7 @@ from http.client import CannotSendRequest, ResponseNotReady
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import random
 from random import choice
+import traceback
 import pyimgur
 import os
 from PIL import Image
@@ -358,9 +359,38 @@ while True:
                     elif "gay" in message.content:
                         contact.chat.send_message("No u")
                     elif "@85254177014" in message.content or message.content.startswith("!help"):
-                        contact.chat.send_message("*Anson's WhatsApp Bot - Help*\nThe prefix of this bot is ```!```. Custom prefixes are coming soon!\n\n```!salt```\nGives salt.\n\n```!69-420-420```\nCalls 69-420-420.\n\n```!discord```\nGives the link for my Discord Server.\n\n```!channel```\nReturns the link of my channel.\n\n```!8ball```\nThe magic 8ball!\n\n```!source```\nShows the source code of this bot.\n\n```!fortune```\nGives you a fortune cookie.\n\n```!help```\nThis command.")
+                        contact.chat.send_message("""*Anson's WhatsApp Bot - Help*
+The prefix of this bot is ```!```. Custom prefixes are coming soon!
+
+```!salt```
+Gives salt.
+
+```!69-420-420```
+Calls 69-420-420.
+
+```!discord```
+Gives the link for my Discord Server.
+
+```!channel```
+Returns the link of my channel.
+
+```!8ball```
+The magic 8ball!
+
+```!source```
+Shows the source code of this bot.
+
+```!fortune```
+Gives you a fortune cookie.
+
+```!help```
+This command.""")
     ## Ignore these errors as they are harmless!
     except CannotSendRequest:
         continue
     except ResponseNotReady:
+        continue
+    except:
+        x = traceback.format_exc()
+        print(f"\nIgnoring exception:\n{x}")
         continue
