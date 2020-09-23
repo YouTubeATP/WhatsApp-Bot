@@ -66,6 +66,10 @@ while True:
                 if isinstance(message, Message):
                     if message.content.startswith("!salt"):
                         contact.chat.send_message("Ever had an annoying nerd flex their ass off in your group chat? No fear, just hit up Anson Salt Industries at 69-420-420 during work hours and a professional inquisitor shall be dispatched to fix your problem!")
+                    elif message.content.startswith("!ping"):
+                        contact.chat.send_message("Pong!")
+                    elif message.content.startswith("!pong"):
+                        contact.chat.send_message("Ping!")
                     elif message.content.startswith("!69-420-420"):
                         contact.chat.send_message("Hello, this is Anson Salt Industries. How may I assist you?")
                     elif message.content.startswith("!discord"):
@@ -382,6 +386,9 @@ Shows the source code of this bot.
 
 ```!fortune```
 Gives you a fortune cookie.
+
+```!ping```
+Returns pong.
 
 ```!help```
 This command.""")
