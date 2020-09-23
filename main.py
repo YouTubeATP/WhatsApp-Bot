@@ -1,10 +1,13 @@
 import time
+from requests.api import head
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webwhatsapi import WhatsAPIDriver
 from webwhatsapi.objects.message import Message
 from http.client import CannotSendRequest, ResponseNotReady
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+import random
+from random import choice
 import pyimgur
 import os
 from PIL import Image
@@ -68,6 +71,32 @@ while True:
                         contact.chat.send_message("Join the Discord Server here!\nhttps://discord.io/ansonthepro")
                     elif message.content.startswith("!channel"):
                         contact.chat.send_message("See my YouTube Channel here:\nhttps://youtube.com/user/anson0803aw")
+                    elif message.content.startswith("!8ball"):
+                        responses = [
+                            "It is certain.",
+                            "It is decidedly so.",
+                            "Without a doubt.",
+                            "Yes – definitely.",
+                            "You may rely on it.",
+                            "As I see it, yes.",
+                            "Most likely.",
+                            "Outlook good.",
+                            "Yes.",
+                            "Signs point to yes.",
+                            "Reply hazy, try again.",
+                            "Ask again later.",
+                            "Better not tell you now.",
+                            "Cannot predict now.",
+                            "Concentrate and ask again.",
+                            "Don't count on it.",
+                            "My reply is no.",
+                            "My sources say no.",
+                            "Outlook not so good.",
+                            "Very doubtful."
+                        ]
+                        contact.chat.send_message(f"Question: {message.content[7:]}\nAnswer: {random.choice(responses)}")
+                    elif message.content.startswith("!source"):
+                        contact.chat.send_message("Check my source code here:\nhttps://github.com/YouTubeATP/WhatsApp-Bot")
                     elif "gay" in message.content:
                         contact.chat.send_message("No u")
     ## Ignore these errors as they are harmless!
