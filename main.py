@@ -70,6 +70,20 @@ while True:
                         contact.chat.send_message("Pong!")
                     elif message.content.startswith("!pong"):
                         contact.chat.send_message("Ping!")
+                    elif message.content.startswith("!random"):
+                        randoms = message.content.split(":")
+                        randoms.pop(0)
+                        if len(randoms) > 1:
+                            contact.chat.send_message(f"*_Randomizer results:_*\n{random.choice(randoms)}")
+                        else:
+                            contact.chat.send_message("You must provide at least 2 items for this command to work!")
+                    elif message.content.startswith("!rannum"):
+                        randoms = message.content.split(" ")
+                        randoms.pop(0)
+                        if len(randoms) != 2:
+                            contact.chat.send_message("You must provide two numbers!")
+                        else:
+                            contact.chat.send_message(f"*_Random integer_*\n{str(random.randint(int(randoms[0]), int(randoms[1]) - 1))}")
                     elif message.content.startswith("!69-420-420"):
                         contact.chat.send_message("Hello, this is Anson Salt Industries. How may I assist you?")
                     elif message.content.startswith("!discord"):
@@ -99,7 +113,7 @@ while True:
                             "Outlook not so good.",
                             "Very doubtful."
                         ]
-                        contact.chat.send_message(f"Question: {message.content[7:]}\nAnswer: {random.choice(responses)}")
+                        contact.chat.send_message(f"*Question:* {message.content[7:]}\n\n*Answer:* {random.choice(responses)}")
                     elif message.content.startswith("!source"):
                         contact.chat.send_message("Check my source code here:\nhttps://github.com/YouTubeATP/WhatsApp-Bot")
                     elif message.content.startswith("!fortune"):
@@ -387,6 +401,12 @@ Shows the source code of this bot.
 ```!fortune```
 Gives you a fortune cookie.
 
+```!random:item1:item2:item3```
+Randomizes a list of items.
+
+```!rannum [num1] [num2]```
+Gives a random integer.
+
 ```!ping```
 Returns pong.
 
@@ -400,4 +420,10 @@ This command.""")
     except:
         x = traceback.format_exc()
         print(f"\nIgnoring exception:\n{x}")
+        try:
+            contact.chat.send_message(f"We're sorry, but an exception has occured.\nError details:\n```{x}```")
+        except:
+            x = traceback.format_exc()
+            print(f"Exception occured when trying to return error report:\n```{x}```")
+            pass
         continue
