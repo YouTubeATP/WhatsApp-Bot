@@ -17,8 +17,8 @@ from decouple import config
 from PIL import Image
 
 print("Starting...")
-options = []
-driver = WhatsAPIDriver(client="chrome", username="Anson the pro!", chrome_options=options, autoconnect=False) ## Intialize webdriver ourself as API's is not working
+chrome_options = []
+driver = WhatsAPIDriver(client="chrome", username="Anson the pro!", chrome_options=chrome_options, autoconnect=False) ## Intialize webdriver ourself as API's is not working
 driver.driver.get(driver._URL)
 gotQR = False
 try:
@@ -406,8 +406,6 @@ BFE PFE VFE ASTM 品質保證
                             "May the warm winds of heaven blow softly upon your sprint."
                         ]
                         contact.chat.send_message("*_Fortune Cookie_*\n" + random.choice(fortunes))
-                    elif "gay" in message.content.lower() or "gae" in message.content.lower():
-                        contact.chat.send_message("No u")
                     elif f"""@{config("NUMBER")}""" in message.content or message.content.startswith("!help"):
                         contact.chat.send_message("""*Anson's WhatsApp Bot - Help*
 The prefix of this bot is ```!```. Custom prefixes are coming soon!
@@ -447,6 +445,13 @@ Shows the source code of this bot.
 
 ```!help```
 This command.""")
+                    elif "gay" in message.content.lower() or "gae" in message.content.lower():
+                        ranList = [True, False]
+                        ran = random.choices(ranList, weights=(30, 70), k=1)
+                        if ran == True:
+                            contact.chat.send_message("No u")
+                        else:
+                            pass
     ## Ignore these errors as they are harmless!
     except CannotSendRequest:
         continue
