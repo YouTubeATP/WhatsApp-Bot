@@ -18,38 +18,45 @@ from PIL import Image
 
 print("Starting...")
 chrome_options = []
-driver = WhatsAPIDriver(client="chrome", username="Anson the pro!", chrome_options=chrome_options, autoconnect=False) ## Intialize webdriver ourself as API's is not working
-driver.driver.get(driver._URL)
 gotQR = False
-try:
-    driver.get_qr(filename="qr.png")
-    gotQR = True
-except NoSuchElementException: ## Try again after 3 seconds
+while True:
+    driver = WhatsAPIDriver(client="chrome", username="Anson the pro!", chrome_options=chrome_options, autoconnect=False) ## Intialize webdriver ourself as API's is not working
+    driver.driver.get(driver._URL)
     try:
-        time.sleep(3)
         driver.get_qr(filename="qr.png")
         gotQR = True
-    except NoSuchElementException:
-        print("Failed to get QR code!") ## Give up, because it is likely that we have logged in
-        gotQR = False
-        pass
-finally:
-    if gotQR == True:
-        CLIENT_ID = config("CLIENT_ID")
-        print(CLIENT_ID)
-        PATH = "./goodqr.png"
-        img = Image.open("qr.png")
-        background = Image.open("./assets/background.jpg")
-        bg_w, bg_h = background.size
-        img_w, img_h = img.size
-        offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
-        background.paste(img, offset, img)
-        background.save('goodqr.png',"PNG")
-        imgur = pyimgur.Imgur(CLIENT_ID)
-        uploaded_image = imgur.upload_image(PATH, title="WhatsApp QR Code")
-        print("QR code has been uploaded to:\n" + str(uploaded_image.link) + "\nPlease scan the QR code to login.")
-    else:
-        pass
+        break
+    except NoSuchElementException: ## Try again after 3 seconds
+        try:
+            time.sleep(3)
+            driver.get_qr(filename="qr.png")
+            gotQR = True
+            break
+        except NoSuchElementException:
+            print("Failed to get QR code!") ## Give up, because it is likely that we have logged in
+            gotQR = False
+            tryAgain = input("""Do you want to try getting the QR code again? Please type "True" if you want to.""")
+            if tryAgain == "True":
+                driver.quit()
+                continue
+            else:
+                break
+if gotQR == True:
+    CLIENT_ID = config("CLIENT_ID")
+    print(CLIENT_ID)
+    PATH = "./goodqr.png"
+    img = Image.open("qr.png")
+    background = Image.open("./assets/background.jpg")
+    bg_w, bg_h = background.size
+    img_w, img_h = img.size
+    offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
+    background.paste(img, offset, img)
+    background.save('goodqr.png',"PNG")
+    imgur = pyimgur.Imgur(CLIENT_ID)
+    uploaded_image = imgur.upload_image(PATH, title="WhatsApp QR Code")
+    print("QR code has been uploaded to:\n" + str(uploaded_image.link) + "\nPlease scan the QR code to login.")
+else:
+    pass
 z = 0
 a = 0
 try:
