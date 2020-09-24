@@ -1,5 +1,5 @@
 # WhatsApp-Bot
-This is a private WhatsApp Bot which I use to entertain friends and automate things.
+This is a private WhatsApp Bot which I use to entertain friends and automate things. The prefix of this bot is `!`. You may get help by mentioning it or using `!help`.
 
 Dependencies include my own version of WebWhatsAPI available at:
 https://github.com/YouTubeATP/WebWhatsapp-Wrapper
