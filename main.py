@@ -9,6 +9,7 @@ from http.client import CannotSendRequest, ResponseNotReady
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 import random
 from random import choice
+import subprocess
 import traceback
 import pyimgur
 import os
@@ -49,15 +50,32 @@ finally:
         print("QR code has been uploaded to:\n" + str(uploaded_image.link) + "\nPlease scan the QR code to login.")
     else:
         pass
+z = 0
+a = 0
 try:
-    driver.wait_for_login(timeout=5)
+    while z == 0:
+        try:
+            driver.wait_for_login(timeout=5)
+        except CannotSendRequest:
+            z = 0
+            continue
+        else:
+            z = 1
 except TimeoutException:
     try:
-        print("Awaiting login... YOU HAVE 90 SECONDS TO DO SO.")
-        driver.wait_for_login(timeout=90)
+        while a == 0:
+            try:
+                print("Awaiting login... YOU HAVE 90 SECONDS TO DO SO.")
+                driver.wait_for_login(timeout=90)
+            except CannotSendRequest:
+                a = 0
+                continue
     except TimeoutException:
         print("Ur too slow rip, try again")
+        a = 1
         raise TimeoutException
+    else:
+        a = 1
 print("Bot started!")
 
 ## Looping forever to check for new messages
@@ -77,6 +95,11 @@ BFE PFE VFE ASTM 品質保證
 有意者請致電{contactdetails}""")
                     elif message.content.startswith("!ping"):
                         contact.chat.send_message("Pong!")
+                        p = subprocess.Popen(["ping.exe","web.whatsapp.com"], stdout = subprocess.PIPE)
+                        message = p.communicate()[0]
+                        message = str(message).replace("b'", '').replace(r"\r", '').replace(r"\n", '''
+''')
+                        contact.chat.send_message("```" + str(message) + "```")
                     elif message.content.startswith("!pong"):
                         contact.chat.send_message("Ping!")
                     elif message.content.startswith("!random"):
@@ -383,7 +406,7 @@ BFE PFE VFE ASTM 品質保證
                             "May the warm winds of heaven blow softly upon your sprint."
                         ]
                         contact.chat.send_message("*_Fortune Cookie_*\n" + random.choice(fortunes))
-                    elif "gay" in message.content:
+                    elif "gay" in message.content.lower() or "gae" in message.content.lower():
                         contact.chat.send_message("No u")
                     elif "@85254177014" in message.content or message.content.startswith("!help"):
                         contact.chat.send_message("""*Anson's WhatsApp Bot - Help*
@@ -417,7 +440,7 @@ Randomizes a list of items.
 Gives a random integer.
 
 ```!ping```
-Returns pong.
+Returns pong and pings the server.
 
 ```!source```
 Shows the source code of this bot.
