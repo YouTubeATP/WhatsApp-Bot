@@ -16,7 +16,7 @@ Put the Client ID of your Imgur Application here. Note this is required. It powe
 ### `DETAILS`
 This is just for censoring out details for the `mask` command. You don't need to set it but it may return an error.
 
-## Put all of those variables in a file called `.env` in the folder root.
+Put all of those variables in a file called `.env` in the folder root.
 
 ## To run the bot, cd to the project directory and run `python main.py`. Scan the QR code and the bot should start working. Note that the bot cannot reply to itself's account, as it works by retrieving the unread messages.
 
