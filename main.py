@@ -408,7 +408,7 @@ BFE PFE VFE ASTM 品質保證
                         contact.chat.send_message("*_Fortune Cookie_*\n" + random.choice(fortunes))
                     elif "gay" in message.content.lower() or "gae" in message.content.lower():
                         contact.chat.send_message("No u")
-                    elif "@85254177014" in message.content or message.content.startswith("!help"):
+                    elif config("NUMBER") in message.content or message.content.startswith("!help"):
                         contact.chat.send_message("""*Anson's WhatsApp Bot - Help*
 The prefix of this bot is ```!```. Custom prefixes are coming soon!
 
