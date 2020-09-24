@@ -66,6 +66,11 @@ while True:
                 if isinstance(message, Message):
                     if message.content.startswith("!salt"):
                         contact.chat.send_message("Ever had an annoying nerd flex their ass off in your group chat? No fear, just hit up Anson Salt Industries at 69-420-420 during work hours and a professional inquisitor shall be dispatched to fix your problem!")
+                    elif message.content.startswith("!mask"):
+                        contact.chat.send_message("""嘉美健口罩 便宜多款式 保證高品質
+本地海外 零售批發 自用送禮 樣樣行
+BFE PFE VFE ASTM 品質保證
+有意者請致電倪小姐96604712""")
                     elif message.content.startswith("!ping"):
                         contact.chat.send_message("Pong!")
                     elif message.content.startswith("!pong"):
@@ -416,6 +421,8 @@ This command.""")
     except CannotSendRequest:
         continue
     except ResponseNotReady:
+        continue
+    except AttributeError:
         continue
     except:
         x = traceback.format_exc()
