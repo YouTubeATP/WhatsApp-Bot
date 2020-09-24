@@ -17,3 +17,5 @@ Put the Client ID of your Imgur Application here. Note this is required. It powe
 This is just for censoring out details for the `mask` command. You don't need to set it but it may return an error.
 
 Put all of those variables in a file called `.env` in the folder root.
+
+## To run the bot, cd to the project directory and run `python main.py`.
