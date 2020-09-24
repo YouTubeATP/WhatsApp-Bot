@@ -33,9 +33,10 @@ except NoSuchElementException: ## Try again after 3 seconds
 finally:
     if gotQR == True:
         CLIENT_ID = os.environ.get("CLIENT_ID")
+        print(CLIENT_ID)
         PATH = "./goodqr.png"
         img = Image.open("qr.png")
-        background = Image.open("background.jpg")
+        background = Image.open("./assets/background.jpg")
         bg_w, bg_h = background.size
         img_w, img_h = img.size
         offset = ((bg_w - img_w) // 2, (bg_h - img_h) // 2)
