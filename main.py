@@ -92,7 +92,7 @@ BFE PFE VFE ASTM 品質保證
                         if len(randoms) != 2:
                             contact.chat.send_message("You must provide two numbers!")
                         else:
-                            contact.chat.send_message(f"*_Random integer_*\n{str(random.randint(int(randoms[0]), int(randoms[1]) - 1))}")
+                            contact.chat.send_message(f"*_Random integer_*\n{str(random.randint(int(randoms[0])), int(randoms[1])))}")
                     elif message.content.startswith("!69-420-420"):
                         contact.chat.send_message("Hello, this is Anson Salt Industries. How may I assist you?")
                     elif message.content.startswith("!discord"):
