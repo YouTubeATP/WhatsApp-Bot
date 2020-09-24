@@ -1,4 +1,5 @@
 import time
+import decouple
 from requests.api import head
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -11,6 +12,7 @@ from random import choice
 import traceback
 import pyimgur
 import os
+from decouple import config
 from PIL import Image
 
 print("Starting...")
@@ -32,7 +34,7 @@ except NoSuchElementException: ## Try again after 3 seconds
         pass
 finally:
     if gotQR == True:
-        CLIENT_ID = os.environ.get("CLIENT_ID")
+        CLIENT_ID = config("CLIENT_ID")
         print(CLIENT_ID)
         PATH = "./goodqr.png"
         img = Image.open("qr.png")
@@ -68,7 +70,7 @@ while True:
                     if message.content.startswith("!salt"):
                         contact.chat.send_message("Ever had an annoying nerd flex their ass off in your group chat? No fear, just hit up Anson Salt Industries at 69-420-420 during work hours and a professional inquisitor shall be dispatched to fix your problem!")
                     elif message.content.startswith("!mask"):
-                        contactdetails = os.environ.get("DETAILS")
+                        contactdetails = config("DETAILS")
                         contact.chat.send_message(f"""嘉美健口罩 便宜多款式 保證高品質
 本地海外 零售批發 自用送禮 樣樣行
 BFE PFE VFE ASTM 品質保證
