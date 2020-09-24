@@ -67,10 +67,11 @@ while True:
                     if message.content.startswith("!salt"):
                         contact.chat.send_message("Ever had an annoying nerd flex their ass off in your group chat? No fear, just hit up Anson Salt Industries at 69-420-420 during work hours and a professional inquisitor shall be dispatched to fix your problem!")
                     elif message.content.startswith("!mask"):
-                        contact.chat.send_message("""嘉美健口罩 便宜多款式 保證高品質
+                        contactdetails = os.environ.get("DETAILS")
+                        contact.chat.send_message(f"""嘉美健口罩 便宜多款式 保證高品質
 本地海外 零售批發 自用送禮 樣樣行
 BFE PFE VFE ASTM 品質保證
-有意者請致電倪小姐96604712""")
+有意者請致電{contactdetails}""")
                     elif message.content.startswith("!ping"):
                         contact.chat.send_message("Pong!")
                     elif message.content.startswith("!pong"):
@@ -400,11 +401,11 @@ Returns the link of my channel.
 ```!8ball```
 The magic 8ball!
 
-```!source```
-Shows the source code of this bot.
-
 ```!fortune```
 Gives you a fortune cookie.
+
+```!mask```
+Get some masks for your pandemic needs!
 
 ```!random:item1:item2:item3```
 Randomizes a list of items.
@@ -414,6 +415,9 @@ Gives a random integer.
 
 ```!ping```
 Returns pong.
+
+```!source```
+Shows the source code of this bot.
 
 ```!help```
 This command.""")
